@@ -156,7 +156,7 @@ AO_stack_pop_explicit_aux_acquire(volatile AO_t *list, AO_stack_aux * a)
                         /* Workaround __builtin_expect bug found in     */
                         /* gcc-4.6.3/alpha causing test_stack failure.  */
 # else
-    if (AO_EXPECT_FALSE(first != AO_load(list)))
+    if (AO_EXPECT_FALSE(first != AO_load_acquire(list)))
 # endif
   {
     AO_store_release(a->AO_stack_bl+i, 0);
